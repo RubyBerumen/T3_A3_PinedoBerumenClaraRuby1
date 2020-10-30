@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /* OPERACIONES BÁSICAS DE LAS LISTAS ENLAZADAS
  * 1) Creacion
@@ -168,37 +171,145 @@ public class ListasEnlazadas {
 
 	public static void main(String[] args) {
 		
-		ListaEnlazada le1 = new ListaEnlazada();
+		ListaEnlazada le = new ListaEnlazada();
 		
-		System.out.println(le1.eliminarDatoEspecifico(3)==-1?"Lista Vacia":"Se eliminó correctamente");
+		Scanner ent = new Scanner(System.in);
 		
-		le1.agregarElementoAlInicio(7);
-		le1.agregarElementoAlInicio(3);
-		le1.agregarElementoAlInicio(10);
-		
-		le1.mostrarElementos();
+		boolean salir = false;
 		
 		
-		int num = le1.eliminarDatoEspecifico(7);
-		System.out.println(num==-1?"Lista Vacia":"Se eliminó correctamente");
-		
-		if (num == -1)
-			System.out.println("Lista vacia");
-		else if(num == -2) 
-			System.out.println("No se encontró el dato");
-		else
-			System.out.println("Se eliminó el " +num+ " correctamente");
+		do {
 			
-		System.out.println();
-		le1.agregarElementoAlFinal(4);
+			System.out.println("1. Insertar elemento");
+            System.out.println("2. Eliminar elemento");
+            System.out.println("3. Mostrar elementos");
+            System.out.println("4. Salir ");
+           
+            try {
+            	System.out.println("Escribe una de las opciones\n");
+                int opcion = ent.nextInt();
+ 
+                switch (opcion) {
+                    case 1:
+                    	
+                    	boolean salir1 = false;
+                		
+                		do {
+                			
+                			System.out.println("1. Insertar elemento al inicio");
+                            System.out.println("2. Insertar elemento al final");
+                            System.out.println("3. Salir");
+                           
+                            try {
+                            	System.out.println("Escribe una de las opciones\n");
+                                int opcion1 = ent.nextInt();
+                 
+                                switch (opcion1) {
+                                    case 1:
+                                    	System.out.println("Escribe el dato a ingresar: ");
+                                    	int info = ent.nextInt();
+                                        le.agregarElementoAlInicio(info);
+                                        break;
+                                    case 2:
+                                    	System.out.println("Escribe el dato a ingresar: ");
+                                    	int info1 = ent.nextInt();
+                                        le.agregarElementoAlFinal(info1);
+                                        break;
+                                    case 3:
+                                        salir1 = true;
+                                        break;
+                                    default:
+                                        System.out.println("Debes ingresar números entre 1 y 3");
+                                }
+                				
+                			} catch (InputMismatchException e) {
+                				System.out.println("Debes ingresar un número");
+                                ent.next();
+                				
+                			}
+                            
+                            
+                			
+                		}while (!salir1);//while
+                        
+                        break;
+                    case 2:
+                        
+                    	boolean salir2 = false;
+                		
+                		do {
+                			
+                			System.out.println("1. Eliminar elemento al inicio");
+                            System.out.println("2. Eliminar elemento al final");
+                            System.out.println("3. Eliminar dato específico");
+                            System.out.println("4. Salir");
+                           
+                            try {
+                            	System.out.println("Escribe una de las opciones\n");
+                                int opcion1 = ent.nextInt();
+                 
+                                switch (opcion1) {
+                                    case 1:
+                                        le.eliminarElementoAlInicio();
+                                        break;
+                                    case 2:
+                                        le.eliminarElementoAlFinal();
+                                        break;
+                                    case 3:
+                                    	System.out.println("Ingresa el dato a eliminar: ");
+                                    	int info2 = ent.nextInt();
+                                    	
+                                    	int num = le.eliminarDatoEspecifico(info2);
+                                    	System.out.println(num == -1? "Lista vacía":"Se eliminó correctamente");
+                                    	
+                                    	if (num == -1)
+                                    		System.out.println("Lista vacía");
+                                    	else if (num == -2)
+                                    		System.out.println("No se encontró el dato");
+                                    	else
+                                    		System.out.println("Se eliminó el " + num + " correctamente");
+                                    	
+                                    	break;
+                                    case 4:
+                                        salir2 = true;
+                                        break;
+                                    default:
+                                        System.out.println("Debes ingresar números entre 1 y 4");
+                                }
+                				
+                			} catch (InputMismatchException e) {
+                				System.out.println("Debes ingresar un número");
+                                ent.next();
+                				
+                			}
+                            
+                            
+                			
+                		}while (!salir2);//while
+                    	
+                        break;
+                    case 3:
+                    	le.mostrarElementos();
+                        break;
+                    case 4:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Debes ingresar números entre 1 y 4");
+                }
+				
+			} catch (InputMismatchException e) {
+				System.out.println("Debes ingresar un número");
+                ent.next();
+				
+			}
+            
+            
+			
+		}while (!salir);//while
 		
-		le1.mostrarElementos();
-		System.out.println();
-		le1.eliminarElementoAlInicio();
-		le1.mostrarElementos();
-		System.out.println();
-		le1.eliminarElementoAlFinal();
-		le1.mostrarElementos();
+		
+		
 	}
 
 }
