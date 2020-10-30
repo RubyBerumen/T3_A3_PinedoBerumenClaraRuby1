@@ -128,7 +128,8 @@ class ListaEnlazada{
 			// hay un solo nodo
 			System.out.println("Encontrado en el primer nodo");
 			int n = nodoInicio.getInfo();
-			nodoInicio = nodoFin = null;
+			nodoInicio = nodoInicio.getnSiguiente();
+			nodoFin=nodoInicio;
 			return n;
 		}else {
 			// hay más de un nodo y la informacion puede estar en alguno de ellos
