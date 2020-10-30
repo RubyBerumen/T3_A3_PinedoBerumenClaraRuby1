@@ -80,7 +80,42 @@ class ListaEnlazada{
 		
 	}
 	
+	//4a) eliminar elemento al inicio
+	public void eliminarElementoAlInicio() {
+		if (vacia()) {
+			System.out.println("La lista está vacía");
+		}else if (nodoInicio == nodoFin){
+			nodoInicio = nodoFin = null;
+		}else {
+			Nodo nodoActual=nodoInicio;
+			nodoInicio=nodoActual.getnSiguiente();
+		}
+	}
 	
+	//4b) eliminar elemanto al final
+	public void eliminarElementoAlFinal() {
+		if (vacia()) {
+			System.out.println("La lista está vacía");
+		}else if (nodoInicio == nodoFin){
+			nodoInicio = nodoFin = null;
+		}else {
+			Nodo nodoAnterior, nodoSiguiente;
+			nodoAnterior = nodoInicio;
+			nodoSiguiente = nodoInicio.getnSiguiente();
+			if (nodoSiguiente==null) {
+				nodoInicio=nodoFin=null;
+			}else {
+				while(nodoSiguiente.getnSiguiente()!=null) {
+					nodoAnterior = nodoAnterior.getnSiguiente();
+					nodoSiguiente = nodoSiguiente.getnSiguiente();
+				}
+				nodoAnterior.setnSiguiente(null);
+			}
+		}
+		
+	}
+		
+		
 	//4c) eliminar un dato específico
 	public int eliminarDatoEspecifico(int info) {
 		if (vacia()) {
@@ -143,7 +178,7 @@ public class ListasEnlazadas {
 		
 		le1.mostrarElementos();
 		
-		/*
+		
 		int num = le1.eliminarDatoEspecifico(7);
 		System.out.println(num==-1?"Lista Vacia":"Se eliminó correctamente");
 		
@@ -153,15 +188,17 @@ public class ListasEnlazadas {
 			System.out.println("No se encontró el dato");
 		else
 			System.out.println("Se eliminó el " +num+ " correctamente");
-			*/
+			
 		System.out.println();
 		le1.agregarElementoAlFinal(4);
 		
 		le1.mostrarElementos();
-		
-		
-		
-		
+		System.out.println();
+		le1.eliminarElementoAlInicio();
+		le1.mostrarElementos();
+		System.out.println();
+		le1.eliminarElementoAlFinal();
+		le1.mostrarElementos();
 	}
 
 }
